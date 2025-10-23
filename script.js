@@ -1,11 +1,14 @@
 // Select all product cards
-const products = document.querySelectorAll('.card > .card-body');
+const products = document.querySelectorAll('.list-products > .card-body');
 
+
+// Function to update the total price
 
 function updateTotal() {
   let total = 0;
 
-  products.forEach(product => {
+  const allProducts = document.querySelectorAll('.list-products > .card-body');
+  allProducts.forEach(product => {
     const price = parseFloat(product.querySelector('.unit-price').textContent);
     const qty = parseInt(product.querySelector('.quantity').textContent);
     total += price * qty;
@@ -35,9 +38,9 @@ products.forEach(product => {
     updateTotal();
   });
 
-  // Remove item (set quantity to 0)
+  // Remove the entire product card
   trashBtn.addEventListener('click', () => {
-    qtyEl.textContent = '0';
+    product.remove(); // removes this specific card
     updateTotal();
   });
 
